@@ -1,11 +1,16 @@
 <template lang="html">
 	<div class="boxed-header">
 		<span class="repo-tree">Repository Tree</span>
-		<button type="button" class="btn btn-sm btn-primary right"
+		<button
+			type="button"
+			class="btn btn-sm btn-primary right"
 			tooltip="{{ copyTooltip }}"
 			v-clipboard:copy="repoTree"
 			:disabled="isDisabled"
-			@click="copyTooltip = 'Copied'">Copy to clipboard</button>
+			@click="copyTooltip = 'Copied'"
+		>
+			Copy to clipboard
+		</button>
 	</div>
 	<div class="boxed-content">
 		<pre class="form-control">{{{ repoTree }}}</pre>
@@ -16,30 +21,30 @@
 export default {
 	data() {
 		return {
-			copyTooltip: 'Copy repository tree view to clipboard'
-		}
+			copyTooltip: 'Copy repository tree view to clipboard',
+		};
 	},
 
 	vuex: {
 		getters: {
-			repoTree: ({ github }) => github.repoTree
-		}
+			repoTree: ({ github }) => github.repoTree,
+		},
 	},
 
 	computed: {
 		isDisabled() {
-			return this.repoTree.length == 0 ? true : false
-		}
+			return this.repoTree.length == 0 ? true : false;
+		},
 	},
 
 	watch: {
 		repoTree(newVal, oldVal) {
-			if(newVal) {
-				this.copyTooltip = 'Copy repository tree view to clipboard'
+			if (newVal) {
+				this.copyTooltip = 'Copy repository tree view to clipboard';
 			}
-		}
-	}
-}
+		},
+	},
+};
 </script>
 
 <style lang="css">
@@ -71,7 +76,7 @@ export default {
 	padding: 2px 10px;
 	margin-right: 10px;
 	border-radius: 2px;
-	color: #FFF;
+	color: #fff;
 	font: 500 12px;
 	white-space: nowrap;
 	position: absolute;
@@ -79,7 +84,7 @@ export default {
 	right: 100%;
 	visibility: hidden;
 	opacity: 0;
-	transition: .3s;
+	transition: 0.3s;
 }
 
 [tooltip]:hover:before {

@@ -8,18 +8,18 @@
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
-import Main from './components/Main.vue'
-import store from './vuex/store'
+import NavBar from './components/NavBar.vue';
+import Main from './components/Main.vue';
+import store from './vuex/store';
 
 export default {
 	store,
 
 	components: {
 		NavBar,
-		Main
-	}
-}
+		Main,
+	},
+};
 </script>
 
 <style>

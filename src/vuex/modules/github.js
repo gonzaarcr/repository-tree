@@ -1,11 +1,7 @@
 // vuex/modules/main.js
-import {
-	SET_REPOLINK,
-	SET_REPOTREE
-} from '../mutation-types'
+import { SET_REPOLINK, SET_REPOTREE } from '../mutation-types'
 import _ from 'lodash'
 import treeify from 'treeify'
-
 
 // initial state
 const state = {
@@ -14,21 +10,21 @@ const state = {
 	userName: '',
 	repoName: '',
 	repoTree: [],
-	rootTree: ''
-}
+	rootTree: '',
+};
 
 // mutations
 const mutations = {
 	[SET_REPOLINK](state, repoLink) {
-		const parsedUrl = /^(\w+)\:\/\/([^\/]+)\/([^\/]+)\/(.*)$/.exec(repoLink)
-		const [, , , userName, repoName] = parsedUrl
+		const parsedUrl = /^(\w+)\:\/\/([^\/]+)\/([^\/]+)\/(.*)$/.exec(repoLink);
+		const [, , , userName, repoName] = parsedUrl;
 
-		state.repoLink = repoLink
-		state.userName = userName
-		state.repoName = repoName
+		state.repoLink = repoLink;
+		state.userName = userName;
+		state.repoName = repoName;
 	},
 	[SET_REPOTREE](state, repoTree) {
-		const self = this
+		const self = this;
 
 		// ES6 lambda calculus
 		const Y = f =>
@@ -43,7 +39,7 @@ const mutations = {
 
 		// Build nesting directory
 		function parse(arr) {
-			return arr.reduceRight((result, key) => ({[key]: result}), null)
+			return arr.reduceRight((result, key) => ({ [key]: result }), null)
 		}
 
 		let treeArray = []
@@ -60,12 +56,12 @@ const mutations = {
 		)
 		walkPath(_.concat(rootTreeArray, otherBlobArray))
 
-		let rootTree = _.reduce(treeArray, function(result, value, key) {
+		let rootTree = _.reduce(treeArray, function (result, value, key) {
 			return _.merge(result, value);
 		}, {});
 
-		let rootBlob = _.reduce(rootBlobArray, function(result, value, key) {
-			return _.merge(result, {[value]: key})
+		let rootBlob = _.reduce(rootBlobArray, function (result, value, key) {
+			return _.merge(result, { [value]: key })
 		}, {});
 
 		let prettyTree = _.merge(rootTree, rootBlob)
@@ -76,5 +72,5 @@ const mutations = {
 
 export default {
 	state,
-	mutations
-}
+	mutations,
+};

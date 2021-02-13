@@ -3,24 +3,18 @@
 		<h1 class="public">
 			<span class="octicon octicon-repo"></span>
 			<span class="author" itemprop="author">
-				<a href="{{ siteLink+userName }}" rel="author" target="_blank">{{
-					userName
-				}}</a>
+				<a href="{{ siteLink+userName }}" rel="author" target="_blank">{{ userName }}</a>
 			</span>
 			<span class="path-divider">/</span>
 			<strong itemprop="name">
 				<a href="{{ repoLink }}" target="_blank">{{ repoName }}</a>
 			</strong>
 		</h1>
-		<div
-			class="blankslate blankslate-spacious blankslate-large"
-			v-if="repoLink.length == 0"
-		>
+		<div class="blankslate blankslate-spacious blankslate-large" v-if="repoLink.length == 0">
 			<h3>Welcome to GitHub repository tree view generater</h3>
 			<p>
-				Copy your github repository link and <kbd>click</kbd> the
-				<code>Generate</code> button, then you will see the pretty display of
-				tree view.
+				Copy your github repository link and <kbd>click</kbd> the <code>Generate</code> button, then
+				you will see the pretty display of tree view.
 			</p>
 		</div>
 		<tree v-else></tree>
@@ -28,7 +22,7 @@
 </template>
 
 <script>
-import Tree from "./Tree.vue";
+import Tree from './Tree.vue';
 
 export default {
 	vuex: {

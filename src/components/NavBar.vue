@@ -6,9 +6,13 @@
 			</div>
 			<form>
 				<label for="repoLink">Repo Link:</label>
-				<input id="repoLink" class="form-control" type="text"
+				<input
+					id="repoLink"
+					class="form-control"
+					type="text"
 					placeholder="https://github.com/xiaoluoboding/repository-tree"
-					v-model="inputValue">
+					v-model="inputValue"
+				/>
 				<span class="input-group-button">
 					<button type="button" class="btn btn-primary" @click="getTree">Generate</button>
 				</span>
@@ -18,10 +22,10 @@
 </template>
 
 <script>
-import { setRepoLink, setRepoTree } from '../vuex/actions'
-import GitHub from 'github-api'
+import { setRepoLink, setRepoTree } from '../vuex/actions';
+import GitHub from 'github-api';
 
-const gh = new GitHub()
+const gh = new GitHub();
 
 export default {
 	vuex: {
@@ -29,42 +33,42 @@ export default {
 			repoLink: ({ github }) => github.repoLink,
 			siteLink: ({ github }) => github.siteLink,
 			userName: ({ github }) => github.userName,
-			repoName: ({ github }) => github.repoName
+			repoName: ({ github }) => github.repoName,
 		},
 
 		actions: {
 			setRepoLink,
-			setRepoTree
-		}
+			setRepoTree,
+		},
 	},
 
 	computed: {
 		inputValue: {
 			get() {
-				return this.repoLink
+				return this.repoLink;
 			},
 			set(val) {
 				if (val.includes(this.siteLink)) {
-					this.setRepoLink(val)
+					this.setRepoLink(val);
 				}
-			}
-		}
+			},
+		},
 	},
 
 	methods: {
 		getTree() {
-			const self = this
-			let repo = gh.getRepo(this.userName,this.repoName)
-			repo.getTree('master?recursive=1', function(err, data) {
+			const self = this;
+			let repo = gh.getRepo(this.userName, this.repoName);
+			repo.getTree('master?recursive=1', function (err, data) {
 				if (err) {
-					console.dir(err.status)
+					console.dir(err.status);
 				}
 				// console.log(data.tree);
-				self.setRepoTree(data.tree)
-			})
-		}
-	}
-}
+				self.setRepoTree(data.tree);
+			});
+		},
+	},
+};
 </script>
 
 <style>
