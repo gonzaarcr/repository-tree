@@ -5,6 +5,6 @@ import App from './App.vue'
 Vue.use(VueClipboard)
 
 new Vue({
-  el: 'body',
-  components: { App }
+	el: 'body',
+	components: { App }
 })
