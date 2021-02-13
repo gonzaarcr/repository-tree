@@ -1,3 +1,14 @@
+.cache
+.vscode
+dist
+node_modules
+coverage
+wiki
+
 .DS_Store
 node_modules/
 npm-debug.log
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
